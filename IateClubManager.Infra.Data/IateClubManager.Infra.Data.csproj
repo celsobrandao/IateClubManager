@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IateClubManager.Domain.Administracao\IateClubManager.Domain.Secretaria.csproj" />
+    <ProjectReference Include="..\IateClubManager.Domain.Core\IateClubManager.Domain.Core.csproj" />
+    <ProjectReference Include="..\IateClubManager.Domain.Navegacao\IateClubManager.Domain.Navegacao.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\Secretaria\" />
+    <Folder Include="Repositories\Navegacao\" />
+  </ItemGroup>
+
+</Project>
