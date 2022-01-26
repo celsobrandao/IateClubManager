@@ -9,6 +9,9 @@ namespace IateClubManager.Infra.Data
         public IEnumerable<Titulo> List() 
             => TituloTable.Titulos;
 
+        public Titulo? GetById(int id)
+            => GetTitulo(id);
+
         public bool Remove(int id)
         {
             var titulo = GetTitulo(id);
@@ -29,7 +32,7 @@ namespace IateClubManager.Infra.Data
             return Update(titulo);
         }
 
-        private static Titulo? GetTitulo(int id) 
+        public static Titulo? GetTitulo(int id) 
             => TituloTable.Titulos.Where(t => t.Id == id).FirstOrDefault();
 
         private static bool Insert(Titulo titulo)

@@ -5,7 +5,7 @@ namespace IateClubManager.Domain.Core.Entities
     public class Embarcacao
     {
         public int ID { get; set; }
-        public Vaga Vaga { get; set; } = new();
+        public Vaga? Vaga { get; set; }
         public string? Nome { get; set; }
         public string? Registro { get; set; }
         public string? Fabricante { get; set; }

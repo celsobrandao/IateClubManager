@@ -5,6 +5,7 @@ namespace IateClubManager.Domain.Core
     public interface ITituloRepository
     {
         IEnumerable<Titulo> List();
+        Titulo? GetById(int id);
         bool Save(Titulo titulo);
         bool Remove(int id);
     }
