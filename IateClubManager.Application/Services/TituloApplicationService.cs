@@ -15,7 +15,11 @@ namespace IateClubManager.Application
 
         public bool Salvar(Titulo titulo)
         {
-           return _tituloService.Salvar(titulo);
+            if (titulo.EhValido())
+            {
+                return _tituloService.Salvar(titulo);
+            }
+            return false;
         }
 
         public Titulo? ListarPorId(int id)
@@ -28,9 +32,9 @@ namespace IateClubManager.Application
             return _tituloService.ListarTodos();
         }
 
-        public bool Remover(int id)
+        public bool Remover(Titulo titulo)
         {
-            return _tituloService.Remover(id);
+            return _tituloService.Remover(titulo);
         }
     }
 }

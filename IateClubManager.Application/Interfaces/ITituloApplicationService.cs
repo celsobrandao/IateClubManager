@@ -7,6 +7,6 @@ namespace IateClubManager.Application.Interfaces
         bool Salvar(Titulo titulo);
         Titulo? ListarPorId(int id);
         IEnumerable<Titulo> ListarTodos();
-        bool Remover(int id);
+        bool Remover(Titulo titulo);
     }
 }

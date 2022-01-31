@@ -4,8 +4,8 @@ namespace IateClubManager.Domain.Core.Entities
 {
     public class Embarcacao
     {
-        public int ID { get; set; }
-        public Vaga? Vaga { get; set; }
+        public int Id { get; set; }
+        public TipoVagaEnum? Vaga { get; set; }
         public string? Nome { get; set; }
         public string? Registro { get; set; }
         public string? Fabricante { get; set; }
@@ -13,5 +13,8 @@ namespace IateClubManager.Domain.Core.Entities
         public string? Tamanho { get; set; }
         public MotorEnum Motor { get; set; }
         public CombustivelEnum Combustivel { get; set; }
+
+        public bool EhValida() 
+            => string.IsNullOrWhiteSpace(Nome) == false && string.IsNullOrWhiteSpace(Registro) == false;
     }
 }

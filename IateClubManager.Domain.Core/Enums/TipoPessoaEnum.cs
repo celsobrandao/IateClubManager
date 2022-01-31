@@ -2,7 +2,6 @@
 {
     public enum TipoPessoaEnum
     {
-        Indefinido,
         PF,
         PJ
     }

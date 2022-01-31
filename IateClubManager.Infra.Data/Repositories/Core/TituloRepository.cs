@@ -6,20 +6,19 @@ namespace IateClubManager.Infra.Data
 {
     public class TituloRepository : ITituloRepository
     {
-        public IEnumerable<Titulo> List() 
-            => TituloTable.Titulos;
+        public IEnumerable<Titulo> List()
+            => FakeDataBase.Titulos;
 
         public Titulo? GetById(int id)
-            => GetTitulo(id);
+            => FakeDataBase.Titulos.Where(t => t.Id == id).FirstOrDefault();
 
-        public bool Remove(int id)
+        public bool Remove(Titulo titulo)
         {
-            var titulo = GetTitulo(id);
             if (titulo == null)
             {
                 return false;
             }
-            TituloTable.Titulos.Remove(titulo);
+            FakeDataBase.Titulos.Remove(titulo);
             return true;
         }
 
@@ -32,24 +31,21 @@ namespace IateClubManager.Infra.Data
             return Update(titulo);
         }
 
-        public static Titulo? GetTitulo(int id) 
-            => TituloTable.Titulos.Where(t => t.Id == id).FirstOrDefault();
-
-        private static bool Insert(Titulo titulo)
+        private bool Insert(Titulo titulo)
         {
-            var maxId = TituloTable.Titulos.Max(t => t.Id);
+            var maxId = FakeDataBase.Titulos.Max(t => t.Id);
             titulo.Id = maxId++;
-            TituloTable.Titulos.Add(titulo);
+            FakeDataBase.Titulos.Add(titulo);
             return true;
         }
 
-        private static bool Update(Titulo titulo)
+        private bool Update(Titulo titulo)
         {
-            var tituloExistente = GetTitulo(titulo.Id);
-            if (tituloExistente != null)
+            var existente = GetById(titulo.Id);
+            if (existente != null)
             {
-                TituloTable.Titulos.Remove(tituloExistente);
-                TituloTable.Titulos.Add(titulo);
+                FakeDataBase.Titulos.Remove(existente);
+                FakeDataBase.Titulos.Add(titulo);
                 return true;
             }
             return false;
