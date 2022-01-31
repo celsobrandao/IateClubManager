@@ -8,7 +8,7 @@ using Moq;
 using System.Collections.Generic;
 using Xunit;
 
-namespace IateClubMAnager.Tests
+namespace IateClubMAnager.Tests.Application.Services
 {
     public class TituloApplicationServiceTests
     {

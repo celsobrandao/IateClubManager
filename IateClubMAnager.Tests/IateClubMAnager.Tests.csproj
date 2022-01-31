@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <Folder Include="1 - Presentation\" />
-    <Folder Include="3 - Domain\" />
     <Folder Include="4 - Infrastructure\" />
   </ItemGroup>
 
