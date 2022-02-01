@@ -74,3 +74,4 @@ namespace IateClubManager.Domain.Core.Services
         }
     }
 }
+
