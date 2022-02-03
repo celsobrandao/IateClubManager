@@ -7,10 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Interfaces\Repositories\" />
-    <Folder Include="Interfaces\Services\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\IateClubManager.Domain.Core\IateClubManager.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>

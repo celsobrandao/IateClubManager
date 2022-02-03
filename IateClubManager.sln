@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IateClubManager.Domain.Nave
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IateClubManager.Infra.Data", "IateClubManager.Infra.Data\IateClubManager.Infra.Data.csproj", "{0A194518-9CB3-4B0E-9789-4EAC4A7EF5A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IateClubMAnager.Tests", "IateClubMAnager.Tests\IateClubMAnager.Tests.csproj", "{302C378F-1396-4A6E-8730-FABA5050A654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IateClubManager.Tests", "IateClubMAnager.Tests\IateClubManager.Tests.csproj", "{302C378F-1396-4A6E-8730-FABA5050A654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

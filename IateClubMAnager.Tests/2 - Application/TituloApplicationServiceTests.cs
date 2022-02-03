@@ -3,12 +3,12 @@ using IateClubManager.Application;
 using IateClubManager.Domain.Core.Entities;
 using IateClubManager.Domain.Core.Enums;
 using IateClubManager.Domain.Core.Interfaces.Services;
-using IateClubMAnager.Tests.Helpers;
+using IateClubManager.Tests.Helpers;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
 
-namespace IateClubMAnager.Tests.Application.Services
+namespace IateClubManager.Tests.Application.Services
 {
     public class TituloApplicationServiceTests
     {
@@ -130,7 +130,7 @@ namespace IateClubMAnager.Tests.Application.Services
         private Titulo MonteTitulo()
         {
             var titulo = new Titulo { Id = RandomHelper.GetInt() };
-            titulo.AlterarSocio(new Socio { Id = RandomHelper.GetInt(), Pessoa = new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PF } });
+            titulo.AlterarSocio(new Socio { Id = RandomHelper.GetInt(), Pessoa = new Pessoa { Id = RandomHelper.GetInt(), CPFCNPJ = RandomHelper.GetString(11), TipoPessoa = TipoPessoaEnum.PF, Nome = RandomHelper.GetString() } });
             titulo.AdicionarEmbarcacao(new Embarcacao { Id = RandomHelper.GetInt(), Nome = RandomHelper.GetString(), Registro = RandomHelper.GetString() });
             titulo.AdicionarEmbarcacao(new Embarcacao { Id = RandomHelper.GetInt(), Nome = RandomHelper.GetString(), Registro = RandomHelper.GetString() });
             return titulo;

@@ -12,7 +12,7 @@ namespace IateClubManager.Domain.Core.Entities
         public int Habilitacao { get; set; }
         public string? Categoria { get; set; }
         public TipoPessoaEnum? TipoPessoa { get; set; }
-        
+
         public bool CpfCnpjEhValido()
         {
             switch (TipoPessoa)
@@ -25,5 +25,8 @@ namespace IateClubManager.Domain.Core.Entities
                     return false;
             }
         }
+
+        public bool EhValido()
+            => CpfCnpjEhValido() && !string.IsNullOrEmpty(Nome);
     }
 }

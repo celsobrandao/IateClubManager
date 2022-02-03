@@ -14,7 +14,7 @@ namespace IateClubManager.Domain.Core.Entities
         public MotorEnum Motor { get; set; }
         public CombustivelEnum Combustivel { get; set; }
 
-        public bool EhValida() 
+        public bool EhValido()
             => string.IsNullOrWhiteSpace(Nome) == false && string.IsNullOrWhiteSpace(Registro) == false;
     }
 }

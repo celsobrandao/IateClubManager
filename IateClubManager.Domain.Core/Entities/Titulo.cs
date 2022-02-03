@@ -3,6 +3,7 @@
     public class Titulo
     {
         private const byte MaxEmbarcacoes = 2;
+
         public int Id { get; set; }
         public Socio? Socio { get; private set; }
         public List<Embarcacao> Embarcacoes { get; private set; } = new();
@@ -28,7 +29,7 @@
         private bool PodeAdicionarEmbarcacao(int id)
             => Embarcacoes.Count < MaxEmbarcacoes && Embarcacoes.Any(e => e.Id == id) == false;
 
-        public bool EhValido() 
-            => Socio != null && Socio.EhValido() && Embarcacoes.All(e => e.EhValida());
+        public bool EhValido()
+            => Socio != null && Socio.EhValido() && Embarcacoes.All(e => e.EhValido());
     }
 }

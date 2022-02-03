@@ -1,9 +1,9 @@
 using FluentAssertions;
 using IateClubManager.Domain.Core.Entities;
-using IateClubMAnager.Tests.Helpers;
+using IateClubManager.Tests.Helpers;
 using Xunit;
 
-namespace IateClubMAnager.Tests.Domain.Core.Entities
+namespace IateClubManager.Tests.Domain.Core.Entities
 {
     public class SocioTests
     {
@@ -16,8 +16,8 @@ namespace IateClubMAnager.Tests.Domain.Core.Entities
             var socio = new Socio
             {
                 Id = RandomHelper.GetInt(),
-                Pessoa = new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = IateClubManager.Domain.Core.Enums.TipoPessoaEnum.PJ },
-                Responsavel = new Pessoa { Id = RandomHelper.GetInt() }
+                Pessoa = new Pessoa { Id = RandomHelper.GetInt(), CPFCNPJ = RandomHelper.GetString(14), TipoPessoa = IateClubManager.Domain.Core.Enums.TipoPessoaEnum.PJ, Nome = RandomHelper.GetString() },
+                Responsavel = new Pessoa { Id = RandomHelper.GetInt(), CPFCNPJ = RandomHelper.GetString(11), TipoPessoa = IateClubManager.Domain.Core.Enums.TipoPessoaEnum.PF, Nome = RandomHelper.GetString() }
             };
             var actual = socio.EhValido();
             actual.Should().BeTrue();

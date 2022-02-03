@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IateClubMAnager.Tests.Helpers
+namespace IateClubManager.Tests.Helpers
 {
     public static class RandomHelper
     {
@@ -8,6 +8,18 @@ namespace IateClubMAnager.Tests.Helpers
 
         public static int GetInt() => _random.Next();
         public static string GetString() => Guid.NewGuid().ToString();
-
+        public static string GetString(int length)
+        {
+            var s = string.Empty;
+            while (s.Length < length)
+            {
+                s += Guid.NewGuid().ToString();
+                if (s.Length > length)
+                {
+                    s = s[..length];
+                }
+            }
+            return s;
+        }
     }
 }
