@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IateClubManager.Domain.Core\IateClubManager.Domain.Core.csproj" />
+    <ProjectReference Include="..\IateClubManager.Domain.Navegacao\IateClubManager.Domain.Navegacao.csproj" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Repositories\Secretaria\" />
-    <Folder Include="Repositories\Navegacao\" />
   </ItemGroup>
 
 </Project>

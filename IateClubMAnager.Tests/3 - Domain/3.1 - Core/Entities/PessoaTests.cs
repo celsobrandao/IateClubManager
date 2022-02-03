@@ -1,10 +1,10 @@
 using FluentAssertions;
 using IateClubManager.Domain.Core.Entities;
 using IateClubManager.Domain.Core.Enums;
-using IateClubMAnager.Tests.Helpers;
+using IateClubManager.Tests.Helpers;
 using Xunit;
 
-namespace IateClubMAnager.Tests.Domain.Core.Entities
+namespace IateClubManager.Tests.Domain.Core.Entities
 {
     public class PessoaTests
     {

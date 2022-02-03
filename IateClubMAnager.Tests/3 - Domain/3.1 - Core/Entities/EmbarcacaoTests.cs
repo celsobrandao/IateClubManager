@@ -1,9 +1,9 @@
 using FluentAssertions;
 using IateClubManager.Domain.Core.Entities;
-using IateClubMAnager.Tests.Helpers;
+using IateClubManager.Tests.Helpers;
 using Xunit;
 
-namespace IateClubMAnager.Tests.Domain.Core.Entities
+namespace IateClubManager.Tests.Domain.Core.Entities
 {
     public class EmbarcacaoTests
     {
@@ -16,7 +16,7 @@ namespace IateClubMAnager.Tests.Domain.Core.Entities
                 Nome = RandomHelper.GetString(),
                 Registro = RandomHelper.GetString()
             };
-            var actual = embarcacao.EhValida();
+            var actual = embarcacao.EhValido();
             actual.Should().BeTrue();
         }
 
@@ -32,7 +32,7 @@ namespace IateClubMAnager.Tests.Domain.Core.Entities
                 Nome = nome,
                 Registro = registro
             };
-            var actual = embarcacao.EhValida();
+            var actual = embarcacao.EhValido();
             actual.Should().BeFalse();
         }
     }

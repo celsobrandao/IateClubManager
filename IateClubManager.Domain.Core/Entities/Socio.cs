@@ -4,6 +4,7 @@
     {
         private const byte MaxDependentes = 4;
         private const byte MaxTripulantes = 2;
+
         public int Id { get; set; }
         public Pessoa? Pessoa { get; set; }
         public Pessoa? Responsavel { get; set; }
@@ -20,6 +21,9 @@
             return false;
         }
 
+        public bool RemoverDependente(Pessoa dependente)
+            => Dependentes.Remove(dependente);
+
         public bool AdicionarTripulante(Pessoa tripulante)
         {
             if (Tripulantes.Count < MaxTripulantes)
@@ -30,14 +34,35 @@
             return false;
         }
 
+        public bool RemoverTripulante(Pessoa tripulante)
+            => Tripulantes.Remove(tripulante);
+
         public bool EhValido()
         {
             if (Pessoa == null)
             {
                 return false;
             }
+            else if (!Pessoa.EhValido())
+            {
+                return false;
+            }
+            else if (Pessoa.TipoPessoa == Enums.TipoPessoaEnum.PJ && Responsavel == null)
+            {
+                return false;
+            }
 
-            if (Pessoa?.TipoPessoa == Enums.TipoPessoaEnum.PJ && Responsavel == null)
+            if (Responsavel != null && !Responsavel.EhValido())
+            {
+                return false;
+            }
+
+            if (Dependentes.Any(d => !d.EhValido()))
+            {
+                return false;
+            }
+
+            if (Tripulantes.Any(t => !t.EhValido()))
             {
                 return false;
             }
