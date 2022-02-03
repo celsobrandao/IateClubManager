@@ -36,9 +36,9 @@ namespace IateClubManager.Tests.Application.Services
         {
             var expected = new List<Titulo>
             {
-                MonteTitulo(),
-                MonteTitulo(),
-                MonteTitulo()
+                TituloHelper.MonteTitulo(),
+                TituloHelper.MonteTitulo(),
+                TituloHelper.MonteTitulo()
             };
             _tituloService.Setup(ts => ts.ListarTodos()).Returns(expected);
 
@@ -59,7 +59,7 @@ namespace IateClubManager.Tests.Application.Services
         [Fact]
         public void ListarPorId_deve_retornar_dados_do_servico()
         {
-            var expected = MonteTitulo();
+            var expected = TituloHelper.MonteTitulo();
 
             _tituloService.Setup(ts => ts.ListarPorId(expected.Id)).Returns(expected);
 
@@ -71,7 +71,7 @@ namespace IateClubManager.Tests.Application.Services
         [Fact]
         public void Salvar_deve_chamar_servico_quando_titulo_for_valido()
         {
-            var tituloValido = MonteTitulo();
+            var tituloValido = TituloHelper.MonteTitulo();
 
             _applicationService.Salvar(tituloValido);
 
@@ -81,7 +81,7 @@ namespace IateClubManager.Tests.Application.Services
         [Fact]
         public void Salvar_nao_deve_chamar_servico_se_titulo_for_invalido()
         {
-            var tituloInvalido = MonteTitulo();
+            var tituloInvalido = TituloHelper.MonteTitulo();
             var socioInvalido = (Socio)null;
             tituloInvalido.AlterarSocio(socioInvalido);
 
@@ -95,7 +95,7 @@ namespace IateClubManager.Tests.Application.Services
         [InlineData(false)]
         public void Salvar_deve_retornar_resposta_do_servico(bool expected)
         {
-            var titulo = MonteTitulo();
+            var titulo = TituloHelper.MonteTitulo();
 
             _tituloService.Setup(ts => ts.Salvar(titulo)).Returns(expected);
 
@@ -107,7 +107,7 @@ namespace IateClubManager.Tests.Application.Services
         [Fact]
         public void Remover_deve_chamar_servico()
         {
-            var titulo = MonteTitulo();
+            var titulo = TituloHelper.MonteTitulo();
 
             _applicationService.Remover(titulo);
 
@@ -119,22 +119,13 @@ namespace IateClubManager.Tests.Application.Services
         [InlineData(false)]
         public void Remover_deve_retornar_resposta_do_servico(bool expected)
         {
-            var titulo = MonteTitulo();
+            var titulo = TituloHelper.MonteTitulo();
 
             _tituloService.Setup(ts => ts.Remover(titulo)).Returns(expected);
 
             var actual = _applicationService.Remover(titulo);
 
             actual.Should().Be(expected);
-        }
-
-        private Titulo MonteTitulo()
-        {
-            var titulo = new Titulo { Id = RandomHelper.GetInt() };
-            titulo.AlterarSocio(new Socio { Id = RandomHelper.GetInt(), Pessoa = new Pessoa { Id = RandomHelper.GetInt(), CPFCNPJ = RandomHelper.GetString(11), TipoPessoa = TipoPessoaEnum.PF, Nome = RandomHelper.GetString() } });
-            titulo.AdicionarEmbarcacao(new Embarcacao { Id = RandomHelper.GetInt(), Nome = RandomHelper.GetString(), Registro = RandomHelper.GetString() });
-            titulo.AdicionarEmbarcacao(new Embarcacao { Id = RandomHelper.GetInt(), Nome = RandomHelper.GetString(), Registro = RandomHelper.GetString() });
-            return titulo;
         }
     }
 }

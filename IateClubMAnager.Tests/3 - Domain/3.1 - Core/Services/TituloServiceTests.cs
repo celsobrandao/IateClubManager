@@ -1,12 +1,10 @@
 using FluentAssertions;
 using IateClubManager.Domain.Core;
 using IateClubManager.Domain.Core.Entities;
-using IateClubManager.Domain.Core.Enums;
 using IateClubManager.Domain.Core.Services;
-using IateClubMAnager.Tests.Helpers;
+using IateClubManager.Tests.Helpers;
 using Moq;
 using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace IateClubMAnager.Tests.Domain.Core.Services
@@ -37,9 +35,9 @@ namespace IateClubMAnager.Tests.Domain.Core.Services
         {
             var titulosExpected = new List<Titulo>
             {
-                MonteTitulo(),
-                MonteTitulo(),
-                MonteTitulo()
+                TituloHelper.MonteTitulo(),
+                TituloHelper.MonteTitulo(),
+                TituloHelper.MonteTitulo()
             };
 
             _tituloRepositoryMock.Setup(tr => tr.List()).Returns(titulosExpected);
@@ -53,7 +51,7 @@ namespace IateClubMAnager.Tests.Domain.Core.Services
         [Fact]
         public void ListarPorId_deve_chamar_repositorio_e_retornar_conforme_esperado()
         {
-            var tituloExpected = MonteTitulo();
+            var tituloExpected = TituloHelper.MonteTitulo();
 
             _tituloRepositoryMock.Setup(tr => tr.GetById(tituloExpected.Id)).Returns(tituloExpected);
 
@@ -103,29 +101,25 @@ namespace IateClubMAnager.Tests.Domain.Core.Services
             actual.Should().BeTrue();
         }
 
-        private Titulo MonteTitulo()
-        {
-            var titulo = new Titulo { Id = RandomHelper.GetInt() };
-            titulo.AlterarSocio(new Socio { Id = RandomHelper.GetInt(), Pessoa = new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PF } });
-            titulo.AdicionarEmbarcacao(new Embarcacao { Id = RandomHelper.GetInt(), Nome = RandomHelper.GetString(), Registro = RandomHelper.GetString() });
-            titulo.AdicionarEmbarcacao(new Embarcacao { Id = RandomHelper.GetInt(), Nome = RandomHelper.GetString(), Registro = RandomHelper.GetString() });
-            return titulo;
-        }
-
         private Titulo MonteTituloCompleto()
         {
-            var titulo = new Titulo { Id = RandomHelper.GetInt() };
-            var socio = new Socio { Id = RandomHelper.GetInt(), Pessoa = new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PJ } };
-            socio.Responsavel = new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PF };
-            socio.AdicionarDependente(new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PF });
-            socio.AdicionarDependente(new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PF });
-            socio.AdicionarDependente(new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PF });
-            socio.AdicionarDependente(new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PF });
-            socio.AdicionarTripulante(new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PF });
-            socio.AdicionarTripulante(new Pessoa { Id = RandomHelper.GetInt(), TipoPessoa = TipoPessoaEnum.PF });
-            titulo.AlterarSocio(socio);
-            titulo.AdicionarEmbarcacao(new Embarcacao { Id = RandomHelper.GetInt(), Nome = RandomHelper.GetString(), Registro = RandomHelper.GetString() });
-            titulo.AdicionarEmbarcacao(new Embarcacao { Id = RandomHelper.GetInt(), Nome = RandomHelper.GetString(), Registro = RandomHelper.GetString() });
+            var maxDependentes = 4;
+            var maxTripulantes = 2;
+            var maxEmbarcacoes = 2;
+
+            var titulo = TituloHelper.MonteTitulo();
+            for (int i = 0; i < maxDependentes; i++)
+            {
+                titulo.Socio.AdicionarDependente(PessoaHelper.MontePessoaFisica());
+            }
+            for (int i = 0; i < maxTripulantes; i++)
+            {
+                titulo.Socio.AdicionarTripulante(PessoaHelper.MontePessoaFisica());
+            }
+            for (int i = 0; i < maxEmbarcacoes; i++)
+            {
+                titulo.AdicionarEmbarcacao(EmbarcacaoHelper.MonteEmbarcacao());
+            }
             return titulo;
         }
 
