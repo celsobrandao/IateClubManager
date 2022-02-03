@@ -21,14 +21,14 @@ namespace IateClubManager.Domain.Core.Services
             _embarcacaoRepository = embarcacaoRepository;
         }
 
-        public Titulo? ListarPorId(int id)
-        {
-            return _tituloRepository.GetById(id);
-        }
-
         public IEnumerable<Titulo> ListarTodos()
         {
             return _tituloRepository.List();
+        }
+
+        public Titulo? ListarPorId(int id)
+        {
+            return _tituloRepository.GetById(id);
         }
 
         public bool Salvar(Titulo titulo)
@@ -47,6 +47,8 @@ namespace IateClubManager.Domain.Core.Services
             {
                 _pessoaRepository.Save(pessoa);
             }
+
+            _socioRepository.Save(titulo.Socio);
 
             return _tituloRepository.Save(titulo);
         }
