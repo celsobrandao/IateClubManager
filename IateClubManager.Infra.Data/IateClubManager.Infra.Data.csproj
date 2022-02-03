@@ -12,8 +12,4 @@
     <ProjectReference Include="..\IateClubManager.Domain.Navegacao\IateClubManager.Domain.Navegacao.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Secretaria\" />
-  </ItemGroup>
-
 </Project>
