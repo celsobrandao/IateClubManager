@@ -79,10 +79,11 @@ namespace IateClubMAnager.Tests.Application.Services
         }
 
         [Fact]
-        public void Salvar_deve_chamar_servico_somente_se_titulo_for_valido()
+        public void Salvar_nao_deve_chamar_servico_se_titulo_for_invalido()
         {
             var tituloInvalido = MonteTitulo();
-            tituloInvalido.AlterarSocio((Socio)null);
+            var socioInvalido = (Socio)null;
+            tituloInvalido.AlterarSocio(socioInvalido);
 
             _applicationService.Salvar(tituloInvalido);
 
