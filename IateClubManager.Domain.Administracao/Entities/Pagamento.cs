@@ -8,6 +8,5 @@ namespace IateClubManager.Domain.Secretaria.Entities
         public Socio? Socio { get; set; }
         public DateTime DataVencimento { get; set; }
         public bool Pago { get; set; }
-
     }
 }

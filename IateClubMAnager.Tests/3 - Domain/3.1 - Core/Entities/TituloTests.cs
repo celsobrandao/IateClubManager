@@ -4,7 +4,7 @@ using IateClubManager.Tests.Helpers;
 using System.Linq;
 using Xunit;
 
-namespace IateClubMAnager.Tests.Domain.Core.Entities
+namespace IateClubManager.Tests.Domain.Core.Entities
 {
     public class TituloTests
     {

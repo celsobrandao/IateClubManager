@@ -16,5 +16,16 @@ namespace IateClubManager.Tests.Helpers
                 Pago = pago,
             };
         }
+
+        internal static Pagamento MontePagamento()
+        {
+            return new Pagamento
+            {
+                Id = RandomHelper.GetInt(),
+                Socio = SocioHelper.MonteSocio(),
+                DataVencimento = DateTime.Now,
+                Pago = true,
+            };
+        }
     }
 }
