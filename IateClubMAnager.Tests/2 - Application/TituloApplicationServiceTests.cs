@@ -1,7 +1,6 @@
 using FluentAssertions;
-using IateClubManager.Application;
+using IateClubManager.Application.Services;
 using IateClubManager.Domain.Core.Entities;
-using IateClubManager.Domain.Core.Enums;
 using IateClubManager.Domain.Core.Interfaces.Services;
 using IateClubManager.Tests.Helpers;
 using Moq;

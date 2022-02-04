@@ -34,7 +34,7 @@ namespace IateClubManager.Infra.Data
 
         private bool Insert(Pagamento pagamento)
         {
-            var maxId = FakeDataBase.Pagamentos.Max(t => t.Id);
+            var maxId = FakeDataBase.Pagamentos.Any() ? FakeDataBase.Pagamentos.Max(t => t.Id) : 0;
             pagamento.Id = maxId++;
             FakeDataBase.Pagamentos.Add(pagamento);
             return true;
@@ -52,7 +52,7 @@ namespace IateClubManager.Infra.Data
             return false;
         }
 
-        public int NumeroDePagamentosNaoPagos(Socio socio) 
+        public int NumeroDePagamentosNaoPagos(Socio socio)
             => FakeDataBase.Pagamentos.Count(t => t.Socio.Id == socio.Id && t.Pago == false);
     }
 }

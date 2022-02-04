@@ -4,7 +4,6 @@ namespace IateClubManager.Tests.Helpers
 {
     internal static class EmbarcacaoHelper
     {
-
         internal static Embarcacao MonteEmbarcacao()
         {
             return new Embarcacao

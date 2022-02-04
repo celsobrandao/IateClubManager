@@ -4,10 +4,13 @@ namespace IateClubManager.Domain.Navegacao.Interfaces.Services
 {
     public interface IFilaEmbarcacaoService
     {
+        PlanoNavegacao? ListarPorId(int id);
+        SortedList<DateTime, PlanoNavegacao> ListarTodos();
+        bool EntrarNaFila(PlanoNavegacao planoNavegacao);
+        bool Remover(PlanoNavegacao planoNavegacao);
+        PlanoNavegacao? LiberarProximaEmbarcacao();
+        PlanoNavegacao? CederPosicao(PlanoNavegacao planoNavegacao);
         void AtualizarFila(PlanoNavegacao planoNavegacao);
-        void EntrarNaFila(PlanoNavegacao planoNavegacao);
-        PlanoNavegacao LiberarProximaEmbarcacao();
-        void Remover(PlanoNavegacao planoNavegacao);
         bool ValidarFila(PlanoNavegacao planoNavegacao);
     }
 }

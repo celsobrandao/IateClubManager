@@ -34,7 +34,7 @@ namespace IateClubManager.Infra.Data
 
         private bool Insert(Advertencia advertencia)
         {
-            var maxId = FakeDataBase.Advertencias.Max(t => t.Id);
+            var maxId = FakeDataBase.Advertencias.Any() ? FakeDataBase.Advertencias.Max(t => t.Id) : 0;
             advertencia.Id = maxId++;
             FakeDataBase.Advertencias.Add(advertencia);
             return true;

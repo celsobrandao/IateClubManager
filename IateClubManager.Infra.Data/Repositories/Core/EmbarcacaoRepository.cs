@@ -33,7 +33,7 @@ namespace IateClubManager.Infra.Data
 
         private bool Insert(Embarcacao embarcacao)
         {
-            var maxId = FakeDataBase.Embarcacoes.Max(t => t.Id);
+            var maxId = FakeDataBase.Embarcacoes.Any() ? FakeDataBase.Embarcacoes.Max(t => t.Id) : 0;
             embarcacao.Id = maxId++;
             FakeDataBase.Embarcacoes.Add(embarcacao);
             return true;

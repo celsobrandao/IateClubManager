@@ -3,7 +3,7 @@ using IateClubManager.Domain.Core.Entities;
 using IateClubManager.Domain.Secretaria.Entities;
 using IateClubManager.Domain.Secretaria.Interfaces.Services;
 
-namespace IateClubManager.Application
+namespace IateClubManager.Application.Services
 {
     public class SecretariaApplicationService : ISecretariaApplicationService
     {

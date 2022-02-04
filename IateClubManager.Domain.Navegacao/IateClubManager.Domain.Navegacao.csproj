@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IateClubManager.Domain.Administracao\IateClubManager.Domain.Secretaria.csproj" />
     <ProjectReference Include="..\IateClubManager.Domain.Core\IateClubManager.Domain.Core.csproj" />
   </ItemGroup>
 

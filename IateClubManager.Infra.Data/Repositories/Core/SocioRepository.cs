@@ -33,7 +33,7 @@ namespace IateClubManager.Infra.Data
 
         private bool Insert(Socio socio)
         {
-            var maxId = FakeDataBase.Socios.Max(t => t.Id);
+            var maxId = FakeDataBase.Socios.Any() ? FakeDataBase.Socios.Max(t => t.Id) : 0;
             socio.Id = maxId++;
             FakeDataBase.Socios.Add(socio);
             return true;

@@ -2,6 +2,8 @@ using FluentAssertions;
 using IateClubManager.Application.Services;
 using IateClubManager.Domain.Navegacao.Entities;
 using IateClubManager.Domain.Navegacao.Services;
+using IateClubManager.Domain.Secretaria.Interfaces.Services;
+using IateClubManager.Infra.Data;
 using IateClubManager.Tests.Helpers;
 using Moq;
 using System;
@@ -14,13 +16,17 @@ namespace IateClubManager.Tests.Application.Services
     {
         private Mock<IPlanoNavegacaoService> _planoNavegacaoService;
         private PlanoNavegacaoApplicationService _applicationService;
+        private SecretariaApplicationService _secretariaApplicationService;
 
         public PlanoNavegacaoApplicationServiceTests()
         {
             _planoNavegacaoService = new Mock<IPlanoNavegacaoService>();
             _planoNavegacaoService.Setup(pns => pns.Remover(It.IsAny<PlanoNavegacao>()));
 
-            _applicationService = new PlanoNavegacaoApplicationService(_planoNavegacaoService.Object);
+            var secretariaService = new SecretariaService(new AdvertenciaRepository(), new PagamentoRepository());
+
+            _applicationService = new PlanoNavegacaoApplicationService(_planoNavegacaoService.Object, secretariaService);
+            _secretariaApplicationService = new SecretariaApplicationService(secretariaService);
         }
 
         [Fact]
@@ -71,9 +77,7 @@ namespace IateClubManager.Tests.Application.Services
         [Fact]
         public void Salvar_deve_chamar_servico_quando_planoNavegacao_for_valido()
         {
-            var planoNavegacaoValido = PlanoNavegacaoHelper.MontePlanoNavegacao();
-
-            _applicationService.Salvar(planoNavegacaoValido);
+            var planoNavegacaoValido = PlanoNavegacaoHelper.MontePlanoNavegacaoValidoComPagamentosEAdvertenciaPassada(_secretariaApplicationService, _applicationService);
 
             _planoNavegacaoService.Verify(pns => pns.Salvar(It.IsAny<PlanoNavegacao>()), Times.Once);
         }
@@ -81,11 +85,7 @@ namespace IateClubManager.Tests.Application.Services
         [Fact]
         public void Salvar_deve_chamar_servico_somente_se_planoNavegacao_for_valido()
         {
-            var planoNavegacaoInvalido = PlanoNavegacaoHelper.MontePlanoNavegacao();
-            planoNavegacaoInvalido.Id = 0;
-            planoNavegacaoInvalido.DataRetornoEfetiva = DateTime.Now;
-
-            _applicationService.Salvar(planoNavegacaoInvalido);
+            var planoNavegacaoInvalido = PlanoNavegacaoHelper.MontePlanoNavegacaoInvalidoSemPagamentosEAdvertenciaVigente(_secretariaApplicationService, _applicationService);
 
             _planoNavegacaoService.Verify(pns => pns.Salvar(It.IsAny<PlanoNavegacao>()), Times.Never);
         }

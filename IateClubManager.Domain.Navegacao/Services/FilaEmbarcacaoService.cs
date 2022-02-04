@@ -1,12 +1,14 @@
 ﻿using IateClubManager.Domain.Navegacao.Entities;
 using IateClubManager.Domain.Navegacao.Interfaces.Services;
+using IateClubManager.Domain.Secretaria.Interfaces.Services;
 
 namespace IateClubManager.Domain.Navegacao.Services
 {
     public class FilaEmbarcacaoService : IFilaEmbarcacaoService
     {
         private readonly IPlanoNavegacaoService _planoNavegacaoService;
-        private SortedList<DateTime, PlanoNavegacao> _fila;
+        private readonly ISecretariaService _secretariaService;
+        private SortedList<DateTime, PlanoNavegacao>? _fila;
 
         private SortedList<DateTime, PlanoNavegacao> Fila
         {
@@ -20,27 +22,67 @@ namespace IateClubManager.Domain.Navegacao.Services
             }
         }
 
-        public FilaEmbarcacaoService(IPlanoNavegacaoService planoNavegacaoService)
+        public FilaEmbarcacaoService(IPlanoNavegacaoService planoNavegacaoService,
+                                     ISecretariaService secretariaService)
         {
             _planoNavegacaoService = planoNavegacaoService;
+            _secretariaService = secretariaService;
         }
 
-        public void EntrarNaFila(PlanoNavegacao planoNavegacao)
+        public PlanoNavegacao? ListarPorId(int id)
         {
-            Fila.Add(planoNavegacao.DataSaida, planoNavegacao);
+            return Fila.FirstOrDefault(f => f.Value.Id == id).Value;
         }
 
-        public void Remover(PlanoNavegacao planoNavegacao)
+        public SortedList<DateTime, PlanoNavegacao> ListarTodos()
         {
-            var key = Fila.FirstOrDefault(pn => pn.Value.Id == planoNavegacao.Id).Key;
-            Fila.Remove(key);
+            return Fila;
         }
 
-        public PlanoNavegacao LiberarProximaEmbarcacao()
+        public bool EntrarNaFila(PlanoNavegacao planoNavegacao)
         {
+            if (_secretariaService.SocioPodeNavegarNaData(planoNavegacao.Titulo.Socio, planoNavegacao.DataSaida))
+            {
+                Fila.Add(planoNavegacao.DataSaida, planoNavegacao);
+                return true;
+            }
+            return false;
+        }
+
+        public bool Remover(PlanoNavegacao planoNavegacao)
+        {
+            return Fila.Remove(planoNavegacao.DataSaida);
+        }
+
+        public PlanoNavegacao? LiberarProximaEmbarcacao()
+        {
+            if (!Fila.Any())
+            {
+                return null;
+            }
+
             var planoNavegacao = Fila.FirstOrDefault().Value;
             Fila.RemoveAt(0);
             return planoNavegacao;
+        }
+
+        public PlanoNavegacao? CederPosicao(PlanoNavegacao planoNavegacao)
+        {
+            var posicao = Fila.IndexOfKey(planoNavegacao.DataSaida);
+            if (posicao > Fila.Count - 1)
+            {
+                return null;
+            }
+
+            var proximo = Fila.Values[posicao + 1];
+            var dataSaidaProximo = proximo.DataSaida;
+
+            proximo.DataSaida = planoNavegacao.DataSaida;
+            planoNavegacao.DataSaida = dataSaidaProximo;
+            AtualizarFila(planoNavegacao);
+            AtualizarFila(proximo);
+
+            return proximo;
         }
 
         public void AtualizarFila(PlanoNavegacao planoNavegacao)

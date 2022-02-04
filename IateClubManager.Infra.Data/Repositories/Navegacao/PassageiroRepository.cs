@@ -33,7 +33,7 @@ namespace IateClubManager.Infra.Data.Repositories.Navegacao
 
         private bool Insert(Passageiro passageiro)
         {
-            var maxId = FakeDataBase.Passageiros.Max(t => t.Id);
+            var maxId = FakeDataBase.Passageiros.Any() ? FakeDataBase.Passageiros.Max(t => t.Id) : 0;
             passageiro.Id = maxId++;
             FakeDataBase.Passageiros.Add(passageiro);
             return true;

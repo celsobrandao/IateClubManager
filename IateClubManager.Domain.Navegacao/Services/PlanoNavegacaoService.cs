@@ -35,6 +35,8 @@ namespace IateClubManager.Domain.Navegacao.Services
 
         public bool Salvar(PlanoNavegacao planoNavegacao)
         {
+            var existe = planoNavegacao.Id != 0;
+
             _pessoaRepository.Save(planoNavegacao.Responsavel);
 
             foreach (var passageiro in planoNavegacao.Passageiros)
@@ -44,7 +46,14 @@ namespace IateClubManager.Domain.Navegacao.Services
 
             if (_planoNavegacaoRepository.Save(planoNavegacao))
             {
-                _filaEmbarcacaoService.AtualizarFila(planoNavegacao);
+                if (existe)
+                {
+                    _filaEmbarcacaoService.AtualizarFila(planoNavegacao);
+                }
+                else
+                {
+                    _filaEmbarcacaoService.EntrarNaFila(planoNavegacao);
+                }
                 return true;
             }
             else
@@ -66,29 +75,5 @@ namespace IateClubManager.Domain.Navegacao.Services
 
             return _planoNavegacaoRepository.Remove(planoNavegacao);
         }
-
-        //public bool AlterarDataSaida(PlanoNavegacao planoNavegacao, DateTime dataSaida)
-        //{
-        //    planoNavegacao.DataSaida = dataSaida;
-        //    return _planoNavegacaoRepository.Save(planoNavegacao);
-        //}
-
-        //public bool IncluirDataRetornoEfetiva(PlanoNavegacao planoNavegacao, DateTime dataRetorno)
-        //{
-        //    planoNavegacao.DataRetornoEfetiva = dataRetorno;
-        //    return _planoNavegacaoRepository.Save(planoNavegacao);
-        //}
-
-        //public bool IncluirPassageiro(PlanoNavegacao planoNavegacao, Passageiro passageiro)
-        //{
-        //    planoNavegacao.IncluirPassageiro(passageiro);
-        //    return _passageiroRepository.Save(passageiro);
-        //}
-
-        //public bool RemoverPassageiro(PlanoNavegacao planoNavegacao, Passageiro passageiro)
-        //{
-        //    planoNavegacao.RemoverPassageiro(passageiro);
-        //    return _passageiroRepository.Remove(passageiro);
-        //}
     }
 }

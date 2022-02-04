@@ -1,21 +1,25 @@
 ﻿using IateClubManager.Application.Interfaces;
 using IateClubManager.Domain.Navegacao.Entities;
 using IateClubManager.Domain.Navegacao.Services;
+using IateClubManager.Domain.Secretaria.Interfaces.Services;
 
 namespace IateClubManager.Application.Services
 {
     public class PlanoNavegacaoApplicationService : IPlanoNavegacaoApplicationService
     {
         private readonly IPlanoNavegacaoService _planoNavegacaoService;
+        private readonly ISecretariaService _secretariaService;
 
-        public PlanoNavegacaoApplicationService(IPlanoNavegacaoService planoNavegacaoService)
+        public PlanoNavegacaoApplicationService(IPlanoNavegacaoService planoNavegacaoService,
+                                                ISecretariaService secretariaService)
         {
             _planoNavegacaoService = planoNavegacaoService;
+            _secretariaService = secretariaService;
         }
 
         public bool Salvar(PlanoNavegacao planoNavegacao)
         {
-            if (planoNavegacao.EhValido())
+            if (planoNavegacao.EhValido() && _secretariaService.SocioPodeNavegarNaData(planoNavegacao.Titulo.Socio, planoNavegacao.DataSaida))
             {
                 return _planoNavegacaoService.Salvar(planoNavegacao);
             }
@@ -36,25 +40,5 @@ namespace IateClubManager.Application.Services
         {
             return _planoNavegacaoService.Remover(titulo);
         }
-
-        //public bool AlterarDataSaida(PlanoNavegacao planoNavegacao, DateTime dataSaida)
-        //{
-        //    return _planoNavegacaoService.AlterarDataSaida(planoNavegacao, dataSaida);
-        //}
-
-        //public bool IncluirDataRetornoEfetiva(PlanoNavegacao planoNavegacao, DateTime dataRetorno)
-        //{
-        //    return _planoNavegacaoService.IncluirDataRetornoEfetiva(planoNavegacao, dataRetorno);
-        //}
-
-        //public bool IncluirPassageiro(PlanoNavegacao planoNavegacao, Passageiro passageiro)
-        //{
-        //    return _planoNavegacaoService.IncluirPassageiro(planoNavegacao, passageiro);
-        //}
-
-        //public bool RemoverPassageiro(PlanoNavegacao planoNavegacao, Passageiro passageiro)
-        //{
-        //    return _planoNavegacaoService.RemoverPassageiro(planoNavegacao, passageiro);
-        //}
     }
 }

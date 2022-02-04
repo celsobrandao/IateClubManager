@@ -2,7 +2,7 @@
 using IateClubManager.Domain.Core.Entities;
 using IateClubManager.Domain.Core.Interfaces.Services;
 
-namespace IateClubManager.Application
+namespace IateClubManager.Application.Services
 {
     public class TituloApplicationService : ITituloApplicationService
     {

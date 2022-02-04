@@ -33,7 +33,7 @@ namespace IateClubManager.Infra.Data.Repositories.Navegacao
 
         private bool Insert(PlanoNavegacao planoNavegacao)
         {
-            var maxId = FakeDataBase.PlanosNavegacoes.Max(t => t.Id);
+            var maxId = FakeDataBase.PlanosNavegacoes.Any() ? FakeDataBase.PlanosNavegacoes.Max(t => t.Id) : 0;
             planoNavegacao.Id = maxId++;
             FakeDataBase.PlanosNavegacoes.Add(planoNavegacao);
             return true;
