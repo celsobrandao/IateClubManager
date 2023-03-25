@@ -13,7 +13,7 @@ namespace IateClubManager.Application.Services
             _filaEmbarcacaoService = filaEmbarcacaoService;
         }
 
-        public PlanoNavegacao? ListarPorId(int id)
+        public PlanoNavegacao ListarPorId(int id)
         {
             return _filaEmbarcacaoService.ListarPorId(id);
         }
@@ -33,12 +33,12 @@ namespace IateClubManager.Application.Services
             return _filaEmbarcacaoService.Remover(planoNavegacao);
         }
 
-        public PlanoNavegacao? LiberarProximaEmbarcacao()
+        public PlanoNavegacao LiberarProximaEmbarcacao()
         {
             return _filaEmbarcacaoService.LiberarProximaEmbarcacao();
         }
 
-        public PlanoNavegacao? CederPosicao(PlanoNavegacao planoNavegacao)
+        public PlanoNavegacao CederPosicao(PlanoNavegacao planoNavegacao)
         {
             return _filaEmbarcacaoService.CederPosicao(planoNavegacao);
         }

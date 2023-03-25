@@ -26,7 +26,7 @@ namespace IateClubManager.Application.Services
             return false;
         }
 
-        public PlanoNavegacao? ListarPorId(int id)
+        public PlanoNavegacao ListarPorId(int id)
         {
             return _planoNavegacaoService.ListarPorId(id);
         }

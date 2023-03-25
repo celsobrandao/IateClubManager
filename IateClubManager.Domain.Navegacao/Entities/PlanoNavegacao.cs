@@ -5,14 +5,14 @@ namespace IateClubManager.Domain.Navegacao.Entities
     public class PlanoNavegacao
     {
         public int Id { get; set; }
-        public Titulo? Titulo { get; set; }
-        public Embarcacao? Embarcacao { get; set; }
+        public Titulo Titulo { get; set; }
+        public Embarcacao Embarcacao { get; set; }
         public DateTime DataSaida { get; set; }
         public DateTime DataRetornoPrevista { get; set; }
         public DateTime DataRetornoEfetiva { get; set; }
-        public string? Destino { get; set; }
-        public Pessoa? Responsavel { get; set; }
-        public List<Passageiro>? Passageiros { get; set; } = new();
+        public string Destino { get; set; }
+        public Pessoa Responsavel { get; set; }
+        public List<Passageiro> Passageiros { get; set; } = new();
 
         public void AlterarDataSaida(DateTime dataSaida)
         {

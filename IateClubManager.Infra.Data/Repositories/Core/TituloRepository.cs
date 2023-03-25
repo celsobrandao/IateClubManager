@@ -9,7 +9,7 @@ namespace IateClubManager.Infra.Data
         public IEnumerable<Titulo> List()
             => FakeDataBase.Titulos;
 
-        public Titulo? GetById(int id)
+        public Titulo GetById(int id)
             => FakeDataBase.Titulos.Where(t => t.Id == id).FirstOrDefault();
 
         public bool Remove(Titulo titulo)

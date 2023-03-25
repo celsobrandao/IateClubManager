@@ -9,7 +9,7 @@ namespace IateClubManager.Infra.Data
         public IEnumerable<Embarcacao> List()
             => FakeDataBase.Embarcacoes;
 
-        public Embarcacao? GetById(int id)
+        public Embarcacao GetById(int id)
             => FakeDataBase.Embarcacoes.Where(t => t.Id == id).FirstOrDefault();
 
         public bool Remove(Embarcacao embarcacao)

@@ -10,7 +10,7 @@ namespace IateClubManager.Infra.Data
         public IEnumerable<Advertencia> List()
             => FakeDataBase.Advertencias;
 
-        public Advertencia? GetById(int id)
+        public Advertencia GetById(int id)
             => FakeDataBase.Advertencias.Where(t => t.Id == id).FirstOrDefault();
 
         public bool Remove(Advertencia advertencia)

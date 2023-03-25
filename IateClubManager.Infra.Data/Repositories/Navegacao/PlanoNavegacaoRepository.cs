@@ -9,7 +9,7 @@ namespace IateClubManager.Infra.Data.Repositories.Navegacao
         public IEnumerable<PlanoNavegacao> List()
             => FakeDataBase.PlanosNavegacoes;
 
-        public PlanoNavegacao? GetById(int id)
+        public PlanoNavegacao GetById(int id)
             => FakeDataBase.PlanosNavegacoes.FirstOrDefault(pn => pn.Id == id);
 
         public bool Remove(PlanoNavegacao planoNavegacao)

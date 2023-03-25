@@ -26,7 +26,7 @@ namespace IateClubManager.Domain.Core.Services
             return _tituloRepository.List();
         }
 
-        public Titulo? ListarPorId(int id)
+        public Titulo ListarPorId(int id)
         {
             return _tituloRepository.GetById(id);
         }

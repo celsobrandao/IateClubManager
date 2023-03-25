@@ -22,7 +22,7 @@ namespace IateClubManager.Application.Services
             return false;
         }
 
-        public Titulo? ListarPorId(int id)
+        public Titulo ListarPorId(int id)
         {
             return _tituloService.ListarPorId(id);
         }

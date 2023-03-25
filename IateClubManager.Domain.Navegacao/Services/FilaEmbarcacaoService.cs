@@ -8,7 +8,7 @@ namespace IateClubManager.Domain.Navegacao.Services
     {
         private readonly IPlanoNavegacaoService _planoNavegacaoService;
         private readonly ISecretariaService _secretariaService;
-        private SortedList<DateTime, PlanoNavegacao>? _fila;
+        private SortedList<DateTime, PlanoNavegacao> _fila;
 
         private SortedList<DateTime, PlanoNavegacao> Fila
         {
@@ -29,7 +29,7 @@ namespace IateClubManager.Domain.Navegacao.Services
             _secretariaService = secretariaService;
         }
 
-        public PlanoNavegacao? ListarPorId(int id)
+        public PlanoNavegacao ListarPorId(int id)
         {
             return Fila.FirstOrDefault(f => f.Value.Id == id).Value;
         }
@@ -54,7 +54,7 @@ namespace IateClubManager.Domain.Navegacao.Services
             return Fila.Remove(planoNavegacao.DataSaida);
         }
 
-        public PlanoNavegacao? LiberarProximaEmbarcacao()
+        public PlanoNavegacao LiberarProximaEmbarcacao()
         {
             if (!Fila.Any())
             {
@@ -66,7 +66,7 @@ namespace IateClubManager.Domain.Navegacao.Services
             return planoNavegacao;
         }
 
-        public PlanoNavegacao? CederPosicao(PlanoNavegacao planoNavegacao)
+        public PlanoNavegacao CederPosicao(PlanoNavegacao planoNavegacao)
         {
             var posicao = Fila.IndexOfKey(planoNavegacao.DataSaida);
             if (posicao > Fila.Count - 1)

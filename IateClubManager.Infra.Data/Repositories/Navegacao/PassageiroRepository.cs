@@ -9,7 +9,7 @@ namespace IateClubManager.Infra.Data.Repositories.Navegacao
         public IEnumerable<Passageiro> List()
             => FakeDataBase.Passageiros;
 
-        public Passageiro? GetById(int id)
+        public Passageiro GetById(int id)
             => FakeDataBase.Passageiros.FirstOrDefault(p => p.Id == id);
 
         public bool Remove(Passageiro passageiro)

@@ -9,7 +9,7 @@ namespace IateClubManager.Infra.Data
         public IEnumerable<Socio> List()
             => FakeDataBase.Socios;
 
-        public Socio? GetById(int id)
+        public Socio GetById(int id)
             => FakeDataBase.Socios.Where(t => t.Id == id).FirstOrDefault();
 
         public bool Remove(Socio socio)

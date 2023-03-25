@@ -10,7 +10,7 @@ namespace IateClubManager.Infra.Data
         public IEnumerable<Pagamento> List()
             => FakeDataBase.Pagamentos;
 
-        public Pagamento? GetById(int id)
+        public Pagamento GetById(int id)
             => FakeDataBase.Pagamentos.Where(t => t.Id == id).FirstOrDefault();
 
         public bool Remove(Pagamento pagamento)

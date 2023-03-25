@@ -15,7 +15,22 @@
 
         public override string ToString()
         {
-            return Valor;
+            if (string.IsNullOrEmpty(Valor))
+                return "";
+            else
+            {
+                if (long.TryParse(Valor, out long l))
+                {
+                    if (Valor.Length == 11)
+                        return l.ToString(@"000\.000\.000\-00");
+                    else if (Valor.Length == 14)
+                        return l.ToString(@"00\.000\.000\/0000\-00");
+                    else
+                        return Valor;
+                }
+                else
+                    return Valor;
+            }
         }
     }
 }

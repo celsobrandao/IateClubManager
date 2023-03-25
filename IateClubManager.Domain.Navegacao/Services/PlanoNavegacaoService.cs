@@ -28,7 +28,7 @@ namespace IateClubManager.Domain.Navegacao.Services
             return _planoNavegacaoRepository.List();
         }
 
-        public PlanoNavegacao? ListarPorId(int id)
+        public PlanoNavegacao ListarPorId(int id)
         {
             return _planoNavegacaoRepository.GetById(id);
         }
