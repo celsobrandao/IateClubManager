@@ -9,7 +9,7 @@ namespace IateClubManager.Tests.Domain.Navegacao.Entities
 {
     public class PlanoNavegacaoTests
     {
-        private static IEnumerable<object[]> GetDadosInvalidos()
+        public static IEnumerable<object[]> GetDadosInvalidos()
         {
             return new List<object[]>
             {
@@ -142,7 +142,7 @@ namespace IateClubManager.Tests.Domain.Navegacao.Entities
             };
         }
 
-        private static IEnumerable<object[]> GetDadosValidos()
+        public static IEnumerable<object[]> GetDadosValidos()
         {
             return new List<object[]>
             {

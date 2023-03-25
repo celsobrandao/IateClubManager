@@ -5,7 +5,7 @@
         private const byte MaxEmbarcacoes = 2;
 
         public int Id { get; set; }
-        public Socio? Socio { get; private set; }
+        public Socio Socio { get; private set; }
         public List<Embarcacao> Embarcacoes { get; private set; } = new();
 
         public void AlterarSocio(Socio socio)

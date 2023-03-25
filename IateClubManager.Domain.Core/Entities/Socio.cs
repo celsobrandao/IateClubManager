@@ -6,8 +6,8 @@
         private const byte MaxTripulantes = 2;
 
         public int Id { get; set; }
-        public Pessoa? Pessoa { get; set; }
-        public Pessoa? Responsavel { get; set; }
+        public Pessoa Pessoa { get; set; }
+        public Pessoa Responsavel { get; set; }
         public List<Pessoa> Dependentes { get; private set; } = new();
         public List<Pessoa> Tripulantes { get; private set; } = new();
 

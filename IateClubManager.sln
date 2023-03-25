@@ -29,8 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IateClubManager.Tests", "Ia
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{BDC5C0B3-F4FC-438F-BD71-C872929F0932}"
 	ProjectSection(SolutionItems) = preProject
-		C:\Users\Jaicon\Downloads\Context map - domain - IateClubManager.png = C:\Users\Jaicon\Downloads\Context map - domain - IateClubManager.png
-		..\Iate Club Manager - Descrição do Projeto.pdf = ..\Iate Club Manager - Descrição do Projeto.pdf
+		..\..\..\..\..\Jaicon\Downloads\Context map - domain - IateClubManager.png = ..\..\..\..\..\Jaicon\Downloads\Context map - domain - IateClubManager.png
 	EndProjectSection
 EndProject
 Global

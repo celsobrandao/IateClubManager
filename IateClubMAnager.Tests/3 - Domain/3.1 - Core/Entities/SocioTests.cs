@@ -1,5 +1,6 @@
 using FluentAssertions;
 using IateClubManager.Domain.Core.Entities;
+using IateClubManager.Domain.Core.ValueObjects;
 using IateClubManager.Tests.Helpers;
 using Xunit;
 
@@ -16,8 +17,8 @@ namespace IateClubManager.Tests.Domain.Core.Entities
             var socio = new Socio
             {
                 Id = RandomHelper.GetInt(),
-                Pessoa = new Pessoa { Id = RandomHelper.GetInt(), CPFCNPJ = RandomHelper.GetString(14), TipoPessoa = IateClubManager.Domain.Core.Enums.TipoPessoaEnum.PJ, Nome = RandomHelper.GetString() },
-                Responsavel = new Pessoa { Id = RandomHelper.GetInt(), CPFCNPJ = RandomHelper.GetString(11), TipoPessoa = IateClubManager.Domain.Core.Enums.TipoPessoaEnum.PF, Nome = RandomHelper.GetString() }
+                Pessoa = new Pessoa { Id = RandomHelper.GetInt(), CPFCNPJ = new CpfCnpj(RandomHelper.GetString(14)), TipoPessoa = IateClubManager.Domain.Core.Enums.TipoPessoaEnum.PJ, Nome = RandomHelper.GetString() },
+                Responsavel = new Pessoa { Id = RandomHelper.GetInt(), CPFCNPJ = new CpfCnpj(RandomHelper.GetString(11)), TipoPessoa = IateClubManager.Domain.Core.Enums.TipoPessoaEnum.PF, Nome = RandomHelper.GetString() }
             };
             var actual = socio.EhValido();
             actual.Should().BeTrue();
